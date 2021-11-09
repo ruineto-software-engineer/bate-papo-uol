@@ -21,9 +21,71 @@
     <title>Bate-papo UOL</title>
 </head>
 <body>
-    
+    <header class="top-bar">
+        <img class="brand" src="./assets/img/brand.png"><!--brand-->
+        <ion-icon class="people" name="people"></ion-icon><!--people-->
+    </header><!--top-bar-->
+
+    <main class="container">
+        <div class="lobby lobby-enter-leave">
+            <div class="lobby-content">
+                <!--current-time-->
+                <span class="current-time">(09:21:45)</span>
+
+                <!--lobby-user-name-->
+                <span class="lobby-user-name">João</span> entra na sala...
+            </div><!--lobby-content-->
+        </div><!--lobby-->
+
+        <div class="lobby">
+            <div class="lobby-content">
+                <!--current-time-->
+                <span class="current-time">(09:22:28)</span>
+
+                <!--lobby-user-name-->                         <!--lobby-message-everyone-->
+                <span class="lobby-user-name">João</span> para <span class="lobby-message-everyone">Todos</span>: Bom dia
+            </div><!--lobby-content-->
+        </div><!--lobby-->
+
+        <div class="lobby">
+            <div class="lobby-content">
+                <!--current-time-->
+                <span class="current-time">(09:22:38)</span>
+
+                <!--lobby-user-name-->                          <!--lobby-message-reply-->
+                <span class="lobby-user-name">Maria</span> para <span class="lobby-message-reply">João</span>: Oi João :)
+            </div><!--lobby-content-->
+        </div><!--lobby-->
+
+        <div class="lobby lobby-private">
+            <div class="lobby-content">
+                <!--current-time-->
+                <span class="current-time">(09:22:48)</span>
+
+                <!--lobby-user-name-->                                        <!--lobby-message-private-->
+                <span class="lobby-user-name">João</span> reservadamente para <span class="lobby-message-private">Maria</span>: Oi gatinha quer tc?
+            </div><!--lobby-content-->
+        </div><!--lobby-->
+
+        <div class="lobby lobby-enter-leave">
+            <div class="lobby-content">
+                <!--current-time-->
+                <span class="current-time">(09:22:58)</span>
+
+                <!--lobby-user-name-->
+                <span class="lobby-user-name">Maria</span> sai na sala...
+            </div><!--lobby-content-->
+        </div><!--lobby-->
+    </main><!--container-->
+
+    <div class="bottom-bar">
+        <input class="bottom-bar-input" placeholder="Escreva aqui..."><!--bottom-bar-input-->
+        <ion-icon class="paper-plane-outline" name="paper-plane-outline"></ion-icon><!--paper-plane-outline-->
+    </div><!--bottom-bar-->
 
     <!-- JavaScript -->
-    <script src="./js/script.js"></script>    
+    <script src="./js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>   
 </body>
 </html>
