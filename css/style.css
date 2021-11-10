@@ -10,6 +10,75 @@ body{
 	background-color: #F3F3F3;
 }
 
+.home-screen{
+	height: 100%;
+	width: 100%;
+
+	background-color: #FFFFFF;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	position: fixed;
+}
+
+.home-screen-visibility{
+	visibility: hidden;
+}
+
+.home-screen-brand-content{
+	margin-top: 72px;
+	margin-bottom: 84px;
+}
+
+.home-screen-brand{
+	width: 130px;
+}
+
+.home-screen-input-content{
+	margin-bottom: 15px;
+}
+
+.home-screen-input{
+	width: 261px;
+	height: 54px;
+
+	text-align: center;
+
+	background-color: #FFFFFF;
+
+	border: 1px solid #D7D7D7;
+	border-radius: 4px;
+}
+
+.home-screen-input::placeholder{
+	font-size: 15px;
+	line-height: 25px;
+	color: #AEAEAE;
+}
+
+.home-screen-button{
+	background: #E7E7E7;
+	border-radius: 9px;
+	border: none;
+
+	width: 109px;
+	height: 45px;
+
+	font-size: 15px;
+	line-height: 25px;
+	color: #696969;
+}
+
+.content-general-visibility{
+	display: none;
+}
+
+.content-general-to-visibility{
+	display: initial;
+}
+
 .top-bar{
 	height: 80px;
 	width: 100%;
@@ -125,4 +194,115 @@ body{
 	font-size: 33px;
 
 	margin-right: 22px;
+}
+
+.user-options{
+	height: 100%;
+	width: 100%;
+
+	background: rgba(0, 0, 0, 0.6);
+
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 1;
+
+	visibility: hidden;
+
+	opacity: 0;
+}
+
+.user-options-content-general{
+	width: 259px;
+	height: 100%;
+
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 1;
+
+	background-color: #FFFFFF;
+
+	visibility: hidden;
+
+	transform: translateX(100%);
+}
+
+.visibility-show{
+	visibility: visible;
+
+	transform: translateX(0);
+	transition: all 1s ease-out;
+}
+
+.visibility-hidden{
+	transform: translateX(100%);
+	transition: all 1s ease-out;
+}
+
+.opacity-show{
+	visibility: visible;
+
+	opacity: 1;
+
+	transition: all 1s ease-out;
+}
+
+.opacity-hidden{
+	visibility: hidden;
+
+	opacity: 0;
+
+	transition: all 1s ease-out;
+}
+
+.user-options-title{
+	font-size: 16px;
+	font-weight: 700;
+
+	line-height: 19px;
+
+	text-align: center;
+
+	padding: 20px;
+}
+
+.user-options-content{
+	margin: 0 20px;
+}
+
+.user-options-select-users ul li,
+.user-options-messagens ul li{
+	font-size: 16px;
+
+	line-height: 19px;
+
+	margin-bottom: 10px;
+}
+
+.user-options-select-users ul li ion-icon,
+.user-options-messagens ul li ion-icon{
+	font-size: 25px;
+}
+
+.user-flex-content{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.user-flex-li{
+	display: flex;
+	align-items: center;
+}
+
+.user-flex-icon{
+	margin-right: 7px;
+}
+
+ul li i.user-options-checkmark{
+	color: #28BB25;
+
+	font-size: 15px;
+	font-weight: bolder;
 }
