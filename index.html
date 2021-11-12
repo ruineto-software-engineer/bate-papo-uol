@@ -38,55 +38,7 @@
     </header><!--top-bar-->
   
     <main class="container">
-      <div class="lobby lobby-enter-leave">
-        <div class="lobby-content">
-          <!--current-time-->
-          <span class="current-time">(09:21:45)</span>
-  
-          <!--lobby-user-name-->
-          <span class="lobby-user-name">João</span> entra na sala...
-        </div><!--lobby-content-->
-      </div><!--lobby-->
-  
-      <div class="lobby">
-        <div class="lobby-content">
-          <!--current-time-->
-          <span class="current-time">(09:22:28)</span>
-  
-          <!--lobby-user-name-->                         <!--lobby-message-everyone-->
-          <span class="lobby-user-name">João</span> para <span class="lobby-message-everyone">Todos</span>: Bom dia
-        </div><!--lobby-content-->
-      </div><!--lobby-->
-  
-      <div class="lobby">
-        <div class="lobby-content">
-          <!--current-time-->
-          <span class="current-time">(09:22:38)</span>
-  
-          <!--lobby-user-name-->                          <!--lobby-message-reply-->
-          <span class="lobby-user-name">Maria</span> para <span class="lobby-message-reply">João</span>: Oi João :)
-        </div><!--lobby-content-->
-      </div><!--lobby-->
-  
-      <div class="lobby lobby-private">
-        <div class="lobby-content">
-          <!--current-time-->
-          <span class="current-time">(09:22:48)</span>
-  
-          <!--lobby-user-name-->                                        <!--lobby-message-private-->
-          <span class="lobby-user-name">João</span> reservadamente para <span class="lobby-message-private">Maria</span>: Oi gatinha quer tc?
-        </div><!--lobby-content-->
-      </div><!--lobby-->
-  
-      <div class="lobby lobby-enter-leave">
-        <div class="lobby-content">
-          <!--current-time-->
-          <span class="current-time">(09:22:58)</span>
-  
-          <!--lobby-user-name-->
-          <span class="lobby-user-name">Maria</span> sai na sala...
-        </div><!--lobby-content-->
-      </div><!--lobby-->       
+      
     </main><!--container-->
   
     <section class="user-options" onclick="userOptionsClose()"></section><!--user-options-->
@@ -97,39 +49,34 @@
       </div><!--user-options-header-->
       <div class="user-options-content">
         <div class="user-options-select-users">
-          <ul>
-            <li class="user-flex-content">
+          <ul class="scroll">
+            <li class="user-flex-content" onclick="chooseOnlineUser(this)">
               <div class="user-flex-li">
                 <ion-icon class="user-flex-icon" name="people"></ion-icon><!--people--> Todos
               </div>
-            </li>
-            <li class="user-flex-content">
-              <div class="user-flex-li">
-                <ion-icon class="user-flex-icon" name="person-circle"></ion-icon><!--person-circle--> João
+              <div class="location-icon">
+                <i class="fa fa-check user-options-checkmark" aria-hidden="true"></i><!--user-options-checkmark-->
               </div>
-            </li>
-            <li class="user-flex-content">
-              <div class="user-flex-li">
-                <ion-icon class="user-flex-icon" name="person-circle"></ion-icon><!--person-circle--> Maria
-              </div>                 
-              <i class="fa fa-check user-options-checkmark" aria-hidden="true"></i><!--user-options-checkmark-->
-            </li>
+            </li>            
           </ul>
         </div><!--user-options-select-users-->
   
         <h2 class="user-options-title">Escolha a visibilidade</h2>
         <div class="user-options-messagens">
           <ul>
-            <li class="user-flex-content">
+            <li class="user-flex-content" onclick="chooseTypeMessage(this)">
               <div class="user-flex-li">
                 <ion-icon class="user-flex-icon" name="lock-open"></ion-icon><!--lock-open--> Público
               </div>
+              <div class="location-icon">
+                <i class="fa fa-check user-options-checkmark" aria-hidden="true"></i><!--user-options-checkmark-->
+              </div>
             </li>
-            <li class="user-flex-content">
+            <li class="user-flex-content" onclick="chooseTypeMessage(this)">
               <div class="user-flex-li">
                 <ion-icon class="user-flex-icon" name="lock-closed"></ion-icon><!--lock-closed--> Reservadamente
               </div>
-              <i class="fa fa-check user-options-checkmark" aria-hidden="true"></i><!--user-options-checkmark-->
+              <div class="location-icon"></div>
             </li>
           </ul>
         </div><!--user-options-messagens-->
@@ -138,7 +85,7 @@
   
     <div class="bottom-bar">
       <input class="bottom-bar-input" placeholder="Escreva aqui..."><!--bottom-bar-input-->
-      <ion-icon class="paper-plane-outline" name="paper-plane-outline"></ion-icon><!--paper-plane-outline-->
+      <ion-icon class="paper-plane-outline" name="paper-plane-outline" onclick="sendMessage()"></ion-icon><!--paper-plane-outline-->
     </div><!--bottom-bar-->
   </div>
 

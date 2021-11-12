@@ -112,10 +112,8 @@ body{
 }
 
 .lobby{
-	display: flex;
-	align-items: center;
-
 	margin-bottom: 4px;
+	padding: 13px 8px;
 
 	background-color: #FFFFFF;
 
@@ -127,9 +125,6 @@ body{
 }
 
 .lobby-content{
-	margin: 0 8px;
-	padding: 13px 0;
-
 	line-height: 20px;
 }
 
@@ -150,6 +145,10 @@ body{
 
 .lobby-private{
 	background-color: #FFDEDE;
+}
+
+.lobby-message-width{
+	overflow-wrap: break-word;
 }
 
 .bottom-bar{
@@ -306,4 +305,9 @@ ul li i.user-options-checkmark{
 
 	font-size: 15px;
 	font-weight: bolder;
+}
+
+.scroll{
+	overflow: scroll;
+	height: 170px;
 }
