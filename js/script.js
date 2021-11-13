@@ -220,6 +220,8 @@ function sendMessage() {
 
     let promisseSendMessageAll = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessageAll);
     promisseSendMessageAll.catch(reload);
+
+    messageInput.value = "";
   }else if(nameContact !== "Todos" && optionMessage === "Reservadamente"){
     const sendMessagePrivate = {
       from: userNameInput.value,
@@ -230,6 +232,8 @@ function sendMessage() {
 
     let promisseSendMessagePrivate = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessagePrivate);
     promisseSendMessagePrivate.catch(reload);
+
+    messageInput.value = "";
   }else if(nameContact !== "Todos" && optionMessage === "Público"){
     const sendMessageAllTo = {
       from: userNameInput.value,
@@ -240,6 +244,8 @@ function sendMessage() {
 
     let promisseSendMessageAllTo = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessageAllTo);
     promisseSendMessageAllTo.catch(reload);
+
+    messageInput.value = "";
   }else if(nameContact === "Todos" && optionMessage === "Reservadamente"){
     const sendMessageAllPrivate = {
       from: userNameInput.value,
@@ -250,9 +256,9 @@ function sendMessage() {
 
     let promisseSendMessageAllPrivate = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessageAllPrivate);
     promisseSendMessageAllPrivate.catch(reload);
-  }
 
-  messageInput.value = "";
+    messageInput.value = "";
+  }
 }
 
 
