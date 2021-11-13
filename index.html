@@ -26,10 +26,11 @@
       <img class="home-screen-brand" src="./assets/img/brand.png"><!--brand-->
     </div>
     <div class="default-screen">
-      <span class="feedback-message-hidden">Por gentileza, digite outro nome...</span>
-      <span class="feedback2-message-hidden">Por gentileza, informe um nome...</span>
-      <div class="home-screen-input-content">
-        <input class="home-screen-input" placeholder="Digite seu nome" data-identifier="enter-name"><!--home-screen-input-->
+      <div class="align-content">
+        <div class="home-screen-input-content">
+          <input class="home-screen-input" placeholder="Digite seu nome" onkeypress="enterClick(event, 0)" data-identifier="enter-name"><!--home-screen-input-->
+        </div>
+        <span class="feedback feedback-message-hidden">Por gentileza, informe um nome...</span>
       </div>
       <button class="home-screen-button" onclick="nameUser()" data-identifier="start">Entrar</button><!--home-screen-button-->
     </div>
@@ -93,7 +94,7 @@
   
     <div class="bottom-bar">
       <div class="bottom-bar-content">
-        <input class="bottom-bar-input" placeholder="Escreva aqui..."><br><!--bottom-bar-input-->
+        <input class="bottom-bar-input" placeholder="Escreva aqui..." onkeypress="enterClick(event, 1)"><br><!--bottom-bar-input-->
         <span class="bottom-bar-description">Enviando para <span class="bottom-bar-user">Todos</span> (<span class="bottom-bar-type-message">Público</span>)</span>
       </div>
       <ion-icon class="paper-plane-outline" data-identifier="send-message" name="paper-plane-outline" onclick="sendMessage()"></ion-icon><!--paper-plane-outline-->

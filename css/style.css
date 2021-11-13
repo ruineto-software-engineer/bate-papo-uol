@@ -30,24 +30,29 @@ body{
 	justify-content: center;
 }
 
+.home-screen-input-content{
+	margin-bottom: 0.25rem;
+}
+
 .default-screen-hidden{
 	display: none;
 }
 
 .feedback-message-hidden{
-	display: none;
-}
+	visibility: hidden;
 
-.feedback2-message-hidden{
-	display: none;
+	opacity: 0;
+
+	font-size: 80%;
+	color: #dc3545;
 }
 
 .feedback-message-show{
-	display: initial;
-}
+	visibility: visible;
 
-.feedback2-message-show{
-	display: initial;
+	opacity: 1;
+
+	transition: all 1s ease-out;
 }
 
 .home-screen-hidden{
@@ -61,10 +66,6 @@ body{
 
 .home-screen-brand{
 	width: 130px;
-}
-
-.home-screen-input-content{
-	margin-bottom: 15px;
 }
 
 .home-screen-input{
@@ -81,7 +82,9 @@ body{
 }
 
 .home-screen-input-invalid{
-	border: 1px solid red;
+	border: 1px solid #dc3545;
+
+	transition: all 1s ease-out;
 }
 
 .home-screen-input::placeholder{
@@ -101,6 +104,16 @@ body{
 	font-size: 15px;
 	line-height: 25px;
 	color: #696969;
+}
+
+.home-screen-button:active{
+	background: lightgray;
+
+	transition: all .15s ease-in-out;
+}
+
+.mt-15{
+	margin-top: 15px;
 }
 
 .home-screen-button-invalid{

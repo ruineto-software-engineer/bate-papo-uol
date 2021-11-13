@@ -73,16 +73,22 @@ function chooseTypeMessage(typeMessage) {
 
 
 const userNameInput = document.querySelector(".home-screen-input");
-const Invalidfeedback = document.querySelector(".feedback-message-hidden");
-const Invalidfeedback2 = document.querySelector(".feedback2-message-hidden");
+const enterLobbyButton = document.querySelector(".home-screen-button");
+const InvalidfeedBack = document.querySelector(".feedback-message-hidden");
 let attemptName = false;
 
 function nameUser() {
   if(userNameInput.value == ""){
+    InvalidfeedBack.innerText = "Por gentileza, informe um nome..."
     userNameInput.classList.add("home-screen-input-invalid");
-    Invalidfeedback2.classList.add("feedback2-message-show");
+    InvalidfeedBack.classList.add("feedback-message-show");
+    enterLobbyButton.classList.add("mt-15");
 
     return;
+  }else{
+    userNameInput.classList.remove("home-screen-input-invalid");
+    InvalidfeedBack.classList.remove("feedback-message-show");
+    enterLobbyButton.classList.remove("mt-15");   
   }
 
   const user = {
@@ -92,7 +98,7 @@ function nameUser() {
   const promisseNameUser = axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", user);
 
   promisseNameUser.then(loadingScreen);
-  promisseNameUser.catch(reload);
+  promisseNameUser.catch(invalidUserName);
 
   setInterval(keepConnection, 5000);
   setInterval(listMessagesRequest, 3000);
@@ -115,6 +121,17 @@ function loadingScreen() {
   loadingScreen.classList.add("loading-screen-show");
 
   setTimeout(enterLobby, 3000);
+}
+
+function invalidUserName(error) {
+  if(error.response.status === 400){
+    InvalidfeedBack.innerText = "Por gentileza, informe outro nome..."
+    userNameInput.classList.add("home-screen-input-invalid");
+    InvalidfeedBack.classList.add("feedback-message-show");
+    enterLobbyButton.classList.add("mt-15");
+  }
+
+  return;
 }
 
 function reload() {
@@ -291,11 +308,18 @@ function listOnlineUsers(answerUsers) {
   usersContainer.innerHTML = optionAll.outerHTML;
   */
  
-
+  let optionAll1;
   if(optionAll.length > 1){
+
+    /*
     for(let i = 1; i < optionAll.length ; i++){
       optionAll[i].remove();
-    }
+    } 
+    */
+   
+    optionAll1 = document.querySelector(".user-options-select-users ul li");
+    usersContainer.innerHTML = "";
+    usersContainer.innerHTML = optionAll1.outerHTML;
   }
 
   for(let i = 0; i < users.length ; i++){
@@ -320,8 +344,12 @@ function listOnlineUsers(answerUsers) {
 
 
 
-document.addEventListener("keydown" , function (event) {
+function enterClick(event, flag) {
   if (event.keyCode !== 13) return;
- 
-  sendMessage();
-});
+
+  if(flag){
+    sendMessage();
+  }else{
+    nameUser()
+  }
+}
