@@ -16,8 +16,16 @@ function userOptionsClose() {
   userOptionsElement.classList.add("visibility-hidden");
 }
 
-function enterLobby(enterLobbyNow){
-  enterLobbyNow.parentNode.classList.add("home-screen-visibility");
+function enterLobby() {
+  if(userNameInput.value == ""){
+    return;
+  }
+
+  const loadingScreen = document.querySelector(".loading-screen");
+  loadingScreen.classList.remove("loading-screen-show");
+
+  const homeScreen = document.querySelector(".home-screen");
+  homeScreen.classList.add("home-screen-hidden");
 
   let contentGeneral = document.querySelector(".content-general-visibility");
   contentGeneral.classList.add("content-general-to-visibility");
@@ -27,7 +35,12 @@ function enterLobby(enterLobbyNow){
 
 
 
-function chooseOnlineUser(choosedUser){
+function chooseOnlineUser(choosedUser) {
+  let chooseOnlineUser = choosedUser.querySelector(".user-flex-li").innerText;
+  let bottomBarOnlineUser = document.querySelector(".bottom-bar-content .bottom-bar-user");
+
+  bottomBarOnlineUser.innerText = chooseOnlineUser;
+
   let choosedUserIconReplace = choosedUser.querySelector(".location-icon");
   const iconCheck = document.querySelector(".user-options-select-users .user-options-checkmark");
 
@@ -38,7 +51,12 @@ function chooseOnlineUser(choosedUser){
   choosedUserIconReplace.innerHTML = `<i class="fa fa-check user-options-checkmark" aria-hidden="true"></i><!--user-options-checkmark-->`;
 }
 
-function chooseTypeMessage(typeMessage){
+function chooseTypeMessage(typeMessage) {
+  let chooseTypeMessage = typeMessage.querySelector(".user-flex-li").innerText;
+  let bottomBarTypeMessage = document.querySelector(".bottom-bar-content .bottom-bar-type-message");
+
+  bottomBarTypeMessage.innerText = chooseTypeMessage;
+
   let typeMessageIconReplace = typeMessage.querySelector(".location-icon");
   const iconCheck = document.querySelector(".user-options-messagens .user-options-checkmark");
 
@@ -54,14 +72,27 @@ function chooseTypeMessage(typeMessage){
 
 
 
+const userNameInput = document.querySelector(".home-screen-input");
+const Invalidfeedback = document.querySelector(".feedback-message-hidden");
+const Invalidfeedback2 = document.querySelector(".feedback2-message-hidden");
+let attemptName = false;
+
 function nameUser() {
-  const userNameInput = document.querySelector(".home-screen-input");
+  if(userNameInput.value == ""){
+    userNameInput.classList.add("home-screen-input-invalid");
+    Invalidfeedback2.classList.add("feedback2-message-show");
+
+    return;
+  }
 
   const user = {
     name: userNameInput.value,
   }
 
-  axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", user);
+  const promisseNameUser = axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", user);
+
+  promisseNameUser.then(loadingScreen);
+  promisseNameUser.catch(reload);
 
   setInterval(keepConnection, 5000);
   setInterval(listMessagesRequest, 3000);
@@ -75,6 +106,19 @@ function keepConnection() {
   }
 
   axios.post("https://mock-api.driven.com.br/api/v4/uol/status", user);
+}
+
+function loadingScreen() {
+  const defaultScreen = document.querySelector(".default-screen");
+  const loadingScreen = document.querySelector(".loading-screen");
+  defaultScreen.classList.add("default-screen-hidden");
+  loadingScreen.classList.add("loading-screen-show");
+
+  setTimeout(enterLobby, 3000);
+}
+
+function reload() {
+  window.location.reload(true);
 }
 
 
@@ -106,7 +150,7 @@ function listMessages(answerMessages) {
 
     if(message.type === "status"){
       messagesContainer.innerHTML += `
-      <div class="lobby lobby-enter-leave">
+      <div class="lobby lobby-enter-leave" data-identifier="message">
         <span class="lobby-content lobby-message-width">
           <!--current-time-->
           <span class="current-time lobby-message-width">${message.time}</span>
@@ -117,9 +161,9 @@ function listMessages(answerMessages) {
       </div><!--lobby-->     
       `;
     }else if(message.type === "private_message"){
-      if(message.to === userNameInput.value || message.from === userNameInput.value){
+      if(message.to === userNameInput.value || message.from === userNameInput.value || message.to === "Todos"){
         messagesContainer.innerHTML += `
-        <div class="lobby lobby-private">
+        <div class="lobby lobby-private" data-identifier="message">
           <span class="lobby-content lobby-message-width">
             <!--current-time-->
             <span class="current-time lobby-message-width">${message.time}</span>
@@ -132,7 +176,7 @@ function listMessages(answerMessages) {
       }      
     }else{
       messagesContainer.innerHTML += `
-      <div class="lobby">
+      <div class="lobby" data-identifier="message">
         <span class="lobby-content lobby-message-width">
           <!--current-time-->
           <span class="current-time lobby-message-width">${message.time}</span>
@@ -151,16 +195,21 @@ function listMessages(answerMessages) {
   lastMessage.scrollIntoView();
 }
 
+let nameContact = "Todos";
+let optionMessage = "Público";
+
 function sendMessage() {
   const userNameInput = document.querySelector(".home-screen-input");
   const messageInput = document.querySelector(".bottom-bar-input");
 
   const checkmarkContact = document.querySelector(".user-options-select-users .user-options-checkmark");
   const checkmarkMessage = document.querySelector(".user-options-messagens .user-options-checkmark");
-
-  let nameContact = checkmarkContact.parentNode.parentNode.children[0].innerText;
-  let optionMessage = checkmarkMessage.parentNode.parentNode.children[0].innerText;
-
+  
+  if(checkmarkContact.parentNode.parentNode.children[0].innerText !== "" && checkmarkMessage.parentNode.parentNode.children[0].innerText !== ""){
+    nameContact = checkmarkContact.parentNode.parentNode.children[0].innerText;
+    optionMessage = checkmarkMessage.parentNode.parentNode.children[0].innerText;
+  }
+  
   if(nameContact === "Todos" && optionMessage === "Público"){
     const sendMessageAll = {
       from: userNameInput.value,
@@ -169,7 +218,8 @@ function sendMessage() {
       type: "message"
     }
 
-    axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessageAll);
+    let promisseSendMessageAll = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessageAll);
+    promisseSendMessageAll.catch(reload);
   }else if(nameContact !== "Todos" && optionMessage === "Reservadamente"){
     const sendMessagePrivate = {
       from: userNameInput.value,
@@ -178,7 +228,8 @@ function sendMessage() {
       type: "private_message"
     }
 
-    axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessagePrivate);
+    let promisseSendMessagePrivate = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessagePrivate);
+    promisseSendMessagePrivate.catch(reload);
   }else if(nameContact !== "Todos" && optionMessage === "Público"){
     const sendMessageAllTo = {
       from: userNameInput.value,
@@ -187,8 +238,21 @@ function sendMessage() {
       type: "message"
     }
 
-    axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessageAllTo);    
+    let promisseSendMessageAllTo = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessageAllTo);
+    promisseSendMessageAllTo.catch(reload);
+  }else if(nameContact === "Todos" && optionMessage === "Reservadamente"){
+    const sendMessageAllPrivate = {
+      from: userNameInput.value,
+      to: "Todos",
+      text: messageInput.value,
+      type: "private_message"
+    }
+
+    let promisseSendMessageAllPrivate = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessageAllPrivate);
+    promisseSendMessageAllPrivate.catch(reload);
   }
+
+  messageInput.value = "";
 }
 
 
@@ -204,19 +268,30 @@ function listOnlineUsersRequest() {
 }
 
 setInterval(listOnlineUsersRequest, 10000);
-function listOnlineUsers(answerUsers){
+function listOnlineUsers(answerUsers) {
   let users = [];
   users = answerUsers.data;
   usersContainer = document.querySelector(".user-options-select-users ul");
 
-  let optionAll = document.querySelector(".user-options-select-users ul li");
+  let optionAll = document.querySelectorAll(".user-options-select-users ul li");
   let iconCheck = document.querySelector(".user-options-select-users .user-options-checkmark");
   let iconLiCheck = iconCheck.parentNode.parentNode;
 
   userSelect = iconLiCheck.children[0].innerText;
 
+  
+  /*
   usersContainer.innerHTML = "";
   usersContainer.innerHTML = optionAll.outerHTML;
+  */
+ 
+
+  if(optionAll.length > 1){
+    for(let i = 1; i < optionAll.length ; i++){
+      optionAll[i].remove();
+    }
+  }
+
   for(let i = 0; i < users.length ; i++){
     const user = users[i];
 
@@ -224,7 +299,7 @@ function listOnlineUsers(answerUsers){
       usersContainer.innerHTML += iconLiCheck.outerHTML; 
     }else{
       usersContainer.innerHTML += `
-      <li class="user-flex-content" onclick="chooseOnlineUser(this)">
+      <li class="user-flex-content" onclick="chooseOnlineUser(this)" data-identifier="participant">
         <div class="user-flex-li">
           <ion-icon class="user-flex-icon" name="person-circle"></ion-icon><!--person-circle--> ${user.name}
         </div>
@@ -241,6 +316,6 @@ function listOnlineUsers(answerUsers){
 
 document.addEventListener("keydown" , function (event) {
   if (event.keyCode !== 13) return;
-  
-  sendMessage()
-})
+ 
+  sendMessage();
+});

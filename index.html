@@ -25,10 +25,18 @@
     <div class="home-screen-brand-content">
       <img class="home-screen-brand" src="./assets/img/brand.png"><!--brand-->
     </div>
-    <div class="home-screen-input-content">
-      <input class="home-screen-input" placeholder="Digite seu nome"><!--home-screen-input-->
+    <div class="default-screen">
+      <span class="feedback-message-hidden">Por gentileza, digite outro nome...</span>
+      <span class="feedback2-message-hidden">Por gentileza, informe um nome...</span>
+      <div class="home-screen-input-content">
+        <input class="home-screen-input" placeholder="Digite seu nome" data-identifier="enter-name"><!--home-screen-input-->
+      </div>
+      <button class="home-screen-button" onclick="nameUser()" data-identifier="start">Entrar</button><!--home-screen-button-->
     </div>
-    <button class="home-screen-button" onclick="enterLobby(this), nameUser()">Entrar</button><!--home-screen-button-->
+    <div class="loading-screen">
+      <img class="loading-screen-icon" src="./assets/img/load-icon.png">
+      <h2 class="loading-screen-description">Entrando...</h2>
+    </div>
   </section><!--home-screen-->
 
   <div class="content-general-visibility">
@@ -84,8 +92,11 @@
     </div><!--user-options-content-general-->
   
     <div class="bottom-bar">
-      <input class="bottom-bar-input" placeholder="Escreva aqui..."><!--bottom-bar-input-->
-      <ion-icon class="paper-plane-outline" name="paper-plane-outline" onclick="sendMessage()"></ion-icon><!--paper-plane-outline-->
+      <div class="bottom-bar-content">
+        <input class="bottom-bar-input" placeholder="Escreva aqui..."><br><!--bottom-bar-input-->
+        <span class="bottom-bar-description">Enviando para <span class="bottom-bar-user">Todos</span> (<span class="bottom-bar-type-message">Público</span>)</span>
+      </div>
+      <ion-icon class="paper-plane-outline" data-identifier="send-message" name="paper-plane-outline" onclick="sendMessage()"></ion-icon><!--paper-plane-outline-->
     </div><!--bottom-bar-->
   </div>
 
