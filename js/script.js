@@ -346,10 +346,11 @@ function listOnlineUsers(answerUsers) {
 
   for(let i = 0; i < users.length ; i++){
     const user = users[i];
+    let userNameInput = document.querySelector(".home-screen-input").value;
 
     if(userSelect == user.name){
       usersContainer.innerHTML += iconLiCheck.outerHTML; 
-    }else{
+    }else if(user.name !== userNameInput){
       usersContainer.innerHTML += `
       <li class="user-flex-content" onclick="chooseOnlineUser(this)" data-identifier="participant">
         <div class="user-flex-li">
