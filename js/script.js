@@ -289,6 +289,7 @@ function sendMessage() {
   }
 
   let promisseSendMessage = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", sendMessage);
+  promisseSendMessage.then(listMessagesRequest);
   promisseSendMessage.catch(messageError);
 
   messageInput.value = "";
