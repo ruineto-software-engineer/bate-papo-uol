@@ -195,7 +195,7 @@ function listMessages(answerMessages) {
       <div class="lobby lobby-enter-leave" data-identifier="message">
         <span class="lobby-content lobby-message-width">
           <!--current-time-->
-          <span class="current-time lobby-message-width">${message.time}</span>
+          <span class="current-time lobby-message-width">(${message.time})</span>
 
           <!--lobby-user-name-->
           <span class="lobby-user-name lobby-message-width">${message.from}</span> <span class="lobby-message-width">${message.text}</span>
@@ -208,7 +208,7 @@ function listMessages(answerMessages) {
         <div class="lobby lobby-private" data-identifier="message">
           <span class="lobby-content lobby-message-width">
             <!--current-time-->
-            <span class="current-time lobby-message-width">${message.time}</span>
+            <span class="current-time lobby-message-width">(${message.time})</span>
   
             <!--lobby-user-name-->                                                                       <!--lobby-message-private-->
             <span class="lobby-user-name lobby-message-width">${message.from}</span> reservadamente para <span class="lobby-user-name lobby-message-private lobby-message-width">${message.to}</span>: <span class="lobby-message-width">${message.text}</span>
@@ -221,7 +221,7 @@ function listMessages(answerMessages) {
       <div class="lobby" data-identifier="message">
         <span class="lobby-content lobby-message-width">
           <!--current-time-->
-          <span class="current-time lobby-message-width">${message.time}</span>
+          <span class="current-time lobby-message-width">(${message.time})</span>
       
           <!--lobby-user-name-->                                                        <!--lobby-message-everyone-->
           <span class="lobby-user-name lobby-message-width">${message.from}</span> para <span class="lobby-user-name lobby-message-everyone">${message.to}</span>: <span class="lobby-message-width">${message.text}</span>
