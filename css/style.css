@@ -21,6 +21,10 @@ body{
 	align-items: center;
 
 	position: fixed;
+	top: 0;
+	left: 0;
+
+	opacity: 1;
 }
 
 .default-screen{
@@ -57,6 +61,10 @@ body{
 
 .home-screen-hidden{
 	visibility: hidden;
+
+	opacity: 0;
+
+	transition: all 1s ease-out;
 }
 
 .home-screen-brand-content{
@@ -71,6 +79,8 @@ body{
 .home-screen-input{
 	width: 261px;
 	height: 54px;
+
+	padding: 0 10px;
 
 	font-size: 15px;	
 	text-align: center;
@@ -91,6 +101,10 @@ body{
 	font-size: 15px;
 	line-height: 25px;
 	color: #AEAEAE;
+}
+
+.home-screen-input:focus{
+	outline: none;
 }
 
 .home-screen-button{
@@ -127,10 +141,16 @@ body{
 	justify-content: center;
 
 	visibility: hidden;
+
+	opacity: 0;
 }
 
 .loading-screen-show{
 	visibility: visible;
+
+	opacity: 1;
+
+	transition: all 1s ease-out;
 }
 
 .loading-screen-icon{
@@ -152,12 +172,18 @@ body{
 	font-weight: 400;
 }
 
-.content-general-visibility{
-	display: none;
+.content-general-hidden{
+	visibility: hidden;
+
+	opacity: 0;
 }
 
-.content-general-to-visibility{
-	display: initial;
+.content-general-show{
+	visibility: visible;
+
+	opacity: 1;
+
+	transition: all 1s ease-out;
 }
 
 .top-bar{
@@ -216,6 +242,33 @@ body{
 	color: #AAAAAA;
 }
 
+.lobby-user-name{
+	display: inline-block;
+  max-width: 13ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.user-online-config{
+	display: inline-block;
+  max-width: 13ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.lobby-bottom-bar-user-name{
+	display: inline-block;
+  max-width: 5ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;	
+}
+
 .lobby-user-name,
 .lobby-message-everyone,
 .lobby-message-reply,
@@ -253,7 +306,7 @@ body{
 }
 
 .bottom-bar-input{
-	width: 70%;
+	width: 90%;
 
 	margin-left: 22px;
 
@@ -261,13 +314,36 @@ body{
 	font-style: normal;
 	line-height: 21px;
 
-	border: none;
+	border: transparent;
+
+	transition: all 1s ease-out;
+}
+
+.bottom-bar-input-error{
+	animation: shake 0.2s ease-in-out 0s 2;
+
+	border-bottom: 1px solid #dc3545;
+
+	transition: all 1s ease-out;
+}
+
+@keyframes shake {
+	0% { margin-left: 0rem; }
+	25% { margin-left: 0.5rem; }
+	75% { margin-left: -0.5rem; }
+	100% { margin-left: 0rem; }
 }
 
 .bottom-bar-input::placeholder{
 	font-style: italic;
 	font-weight: 500;
 	color: #000000;	
+}
+
+.bottom-bar-input-error::placeholder{
+	color: #dc3545;
+
+	transition: all 1s ease-out;
 }
 
 .bottom-bar-input:focus{
@@ -401,4 +477,20 @@ ul li i.user-options-checkmark{
 .scroll{
 	overflow-y: scroll;
 	height: 170px;
+}
+
+@media (min-width: 400px){
+	.lobby-bottom-bar-user-name{
+		max-width: 20ch;
+	}
+
+	.bottom-bar-content{
+		width: 100%;
+
+		padding-right: 32px;
+	}
+
+	.bottom-bar-input{
+		width: 100%;
+	}
 }
