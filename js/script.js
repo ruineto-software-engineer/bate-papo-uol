@@ -85,7 +85,7 @@ function nameUser() {
     setTimeout(delayInvalidEmpty, 300);
 
     return;
-  }else if(userNameInput.value.length > 255){
+  }else if(userNameInput.value.length > 255 || userNameInput.value == "Todos" || userNameInput.value == "todos"){
     userNameInput.classList.remove("home-screen-input-invalid");
     InvalidfeedBack.classList.remove("feedback-message-show");
     enterLobbyButton.classList.remove("mt-15");  
@@ -324,21 +324,9 @@ function listOnlineUsers(answerUsers) {
   let iconLiCheck = iconCheck.parentNode.parentNode;
 
   userSelect = iconLiCheck.children[0].innerText;
-
-  /*
-  usersContainer.innerHTML = "";
-  usersContainer.innerHTML = optionAll.outerHTML;
-  */
   
   let optionAllSaved;
-  if(optionAll.length > 1){
-
-    /*
-    for(let i = 1; i < optionAll.length ; i++){
-      optionAll[i].remove();
-    } 
-    */
-    
+  if(optionAll.length > 1){    
     optionAllSaved = document.querySelector(".user-options-select-users ul li");
     usersContainer.innerHTML = "";
     usersContainer.innerHTML = optionAllSaved.outerHTML;
@@ -367,9 +355,11 @@ setInterval(searchCheckMark, 1000);
 function searchCheckMark() {
   let checkMarkSearch = document.querySelector(".user-options-select-users .user-options-checkmark");
   let locationIcon = document.querySelector(".user-options-select-users .location-icon");
+  let userNameBottomBar = document.querySelector(".lobby-bottom-bar-user-name");
 
   if(checkMarkSearch === null){    
     locationIcon.innerHTML = `<i class="fa fa-check user-options-checkmark" aria-hidden="true"></i><!--user-options-checkmark-->`;
+    userNameBottomBar.innerHTML = "Todos";
   }
 
   return;
@@ -380,11 +370,11 @@ function searchCheckMark() {
 
 
 function enterClick(event, flag) {
-  if (event.keyCode !== 13) return;
+  if (event.key !== 'Enter') return;
 
   if(flag){
     sendMessage();
   }else{
-    nameUser()
+    nameUser();
   }
 }

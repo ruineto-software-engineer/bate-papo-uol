@@ -23,21 +23,21 @@
 <body>
   <section class="home-screen">
     <div class="home-screen-brand-content">
-      <img class="home-screen-brand" src="./assets/img/brand.png"><!--brand-->
-    </div>
+      <img class="home-screen-brand" src="./assets/img/brand.png"><!--home-screen-brand-->
+    </div><!--home-screen-brand-content-->
     <div class="default-screen">
       <div class="align-content">
         <div class="home-screen-input-content">
           <input class="home-screen-input" placeholder="Digite seu nome" onkeypress="enterClick(event, 0)" data-identifier="enter-name"><!--home-screen-input-->
-        </div>
-        <span class="feedback feedback-message-hidden">Por gentileza, informe um nome...</span>
-      </div>
+        </div><!--home-screen-input-content-->
+        <span class="feedback feedback-message-hidden">Por gentileza, informe um nome...</span><!--feedback feedback-message-hidden-->
+      </div><!--align-content-->
       <button class="home-screen-button" onclick="nameUser()" data-identifier="start">Entrar</button><!--home-screen-button-->
-    </div>
+    </div><!--default-screen-->
     <div class="loading-screen">
-      <img class="loading-screen-icon" src="./assets/img/load-icon.png">
-      <h2 class="loading-screen-description">Entrando...</h2>
-    </div>
+      <img class="loading-screen-icon" src="./assets/img/load-icon.png"><!--loading-screen-icon-->
+      <h2 class="loading-screen-description">Entrando...</h2><!--loading-screen-description-->
+    </div><!--loading-screen-->
   </section><!--home-screen-->
 
   <div class="content-general-hidden">
@@ -46,9 +46,7 @@
       <ion-icon class="people" name="people" onclick="userOptionsOpen()"></ion-icon><!--people-->
     </header><!--top-bar-->
   
-    <main class="container">
-      
-    </main><!--container-->
+    <main class="container"></main><!--container-->
   
     <section class="user-options" onclick="userOptionsClose()"></section><!--user-options-->
   
@@ -62,31 +60,31 @@
             <li class="user-flex-content" onclick="chooseOnlineUser(this)">
               <div class="user-flex-li">
                 <ion-icon class="user-flex-icon" name="people"></ion-icon><!--people--> Todos
-              </div>
+              </div><!--user-flex-li-->
               <div class="location-icon">
                 <i class="fa fa-check user-options-checkmark" aria-hidden="true"></i><!--user-options-checkmark-->
-              </div>
-            </li>            
-          </ul>
+              </div><!--location-icon-->
+            </li><!--user-flex-content-->            
+          </ul><!--scroll-->
         </div><!--user-options-select-users-->
   
-        <h2 class="user-options-title">Escolha a visibilidade</h2>
+        <h2 class="user-options-title">Escolha a visibilidade</h2><!--user-options-title-->
         <div class="user-options-messagens">
           <ul>
             <li class="user-flex-content" onclick="chooseTypeMessage(this)">
               <div class="user-flex-li">
                 <ion-icon class="user-flex-icon" name="lock-open"></ion-icon><!--lock-open--> Público
               </div>
-              <div class="location-icon">
+              <div class="location-icon"><!--location-icon-->
                 <i class="fa fa-check user-options-checkmark" aria-hidden="true"></i><!--user-options-checkmark-->
               </div>
             </li>
             <li class="user-flex-content" onclick="chooseTypeMessage(this)">
               <div class="user-flex-li">
                 <ion-icon class="user-flex-icon" name="lock-closed"></ion-icon><!--lock-closed--> Reservadamente
-              </div>
-              <div class="location-icon"></div>
-            </li>
+              </div><!--user-flex-li-->
+              <div class="location-icon"></div><!--location-icon-->
+            </li><!--user-flex-content-->
           </ul>
         </div><!--user-options-messagens-->
       </div><!--user-options-content-->
@@ -95,11 +93,13 @@
     <div class="bottom-bar">
       <div class="bottom-bar-content">
         <input class="bottom-bar-input" placeholder="Escreva aqui..." onkeypress="enterClick(event, 1)"><br><!--bottom-bar-input-->
+
+        <!--bottom-bar-description-->                      <!--bottom-bar-user-->                                                 <!--bottom-bar-type-message-->                          
         <span class="bottom-bar-description">Enviando para <span class="lobby-bottom-bar-user-name bottom-bar-user">Todos</span> (<span class="bottom-bar-type-message">Público</span>)</span>
-      </div>
+      </div><!--bottom-bar-content-->
       <ion-icon class="paper-plane-outline" data-identifier="send-message" name="paper-plane-outline" onclick="sendMessage()"></ion-icon><!--paper-plane-outline-->
     </div><!--bottom-bar-->
-  </div>
+  </div><!--content-general-hidden-->
 
   <!-- JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
